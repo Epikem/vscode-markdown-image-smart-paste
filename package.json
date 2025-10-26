@@ -13,6 +13,14 @@
   "activationEvents": [
     "onLanguage:markdown"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Epikem/vscode-markdown-image-smart-paste.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Epikem/vscode-markdown-image-smart-paste/issues"
+  },
+  "homepage": "https://github.com/Epikem/vscode-markdown-image-smart-paste#readme",
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
