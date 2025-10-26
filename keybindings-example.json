@@ -1,0 +1,19 @@
+[
+  {
+    "key": "cmd+v",
+    "command": "markdownImageSmartPaste.smartPaste",
+    "when": "editorTextFocus && editorLangId == markdown"
+  },
+  {
+    "key": "ctrl+v",
+    "command": "markdownImageSmartPaste.smartPaste",
+    "when": "editorTextFocus && editorLangId == markdown",
+    "linux": "ctrl+v",
+    "win": "ctrl+v"
+  },
+  {
+    "key": "ctrl+shift+u",
+    "command": "markdownImageSmartPaste.toggleOnPaste"
+  }
+]
+

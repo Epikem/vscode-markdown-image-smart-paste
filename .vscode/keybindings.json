@@ -1,0 +1,7 @@
+[
+  {
+    "key": "cmd+v",
+    "command": "markdownImageSmartPaste.smartPaste",
+    "when": "editorTextFocus && editorLangId == 'markdown'"
+  }
+]

@@ -1,0 +1,109 @@
+{
+  "name": "markdown-image-smart-paste",
+  "displayName": "Markdown Image Smart Paste",
+  "description": "Smart paste for Markdown: automatically upload clipboard images to S3 and insert markdown links",
+  "version": "0.0.1",
+  "publisher": "epikem",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownImageSmartPaste.pasteImage",
+        "title": "Paste Image to S3"
+      },
+      {
+        "command": "markdownImageSmartPaste.toggleOnPaste",
+        "title": "Toggle Auto Paste Upload"
+      },
+      {
+        "command": "markdownImageSmartPaste.smartPaste",
+        "title": "Smart Paste (Auto-detects text vs image)"
+      }
+    ],
+    "configuration": {
+      "title": "Markdown Image Smart Paste",
+      "properties": {
+        "markdownImageSmartPaste.bucket": {
+          "type": "string",
+          "description": "S3 bucket name (required)"
+        },
+        "markdownImageSmartPaste.region": {
+          "type": "string",
+          "default": "ap-northeast-2",
+          "description": "AWS region"
+        },
+        "markdownImageSmartPaste.prefix": {
+          "type": "string",
+          "default": "images/${yyyy}/${MM}",
+          "description": "S3 key prefix template (supports ${yyyy}, ${MM}, ${dd})"
+        },
+        "markdownImageSmartPaste.publicBaseUrl": {
+          "type": "string",
+          "description": "Public base URL for CDN or static hosting (optional)"
+        },
+        "markdownImageSmartPaste.useAclPublicRead": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set ACL to public-read"
+        },
+        "markdownImageSmartPaste.altFrom": {
+          "type": "string",
+          "enum": ["filename", "timestamp", "none"],
+          "default": "filename",
+          "description": "How to generate alt text"
+        },
+        "markdownImageSmartPaste.linkMode": {
+          "type": "string",
+          "enum": ["url", "key", "name"],
+          "default": "url",
+          "description": "Link mode for markdown snippet"
+        },
+        "markdownImageSmartPaste.enableOnPaste": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic upload on paste"
+        },
+        "markdownImageSmartPaste.logging": {
+          "type": "string",
+          "enum": ["error", "info", "debug"],
+          "default": "info",
+          "description": "Logging level"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run package",
+    "compile": "node esbuild.js",
+    "watch": "node esbuild.js --watch",
+    "package": "node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "pnpm run compile-tests && pnpm run compile",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-electron": "^2.3.8",
+    "esbuild": "^0.19.11",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.478.0"
+  }
+}
+

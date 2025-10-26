@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.yarnrc
+esbuild.js
+tsconfig.json
+*.vsix
+node_modules/**
+out/**
+*.log
+README.bakup.md
+
